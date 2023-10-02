@@ -4,7 +4,7 @@ COPY . .
 
 ENV GOPATH=/tmp
 
-RUN go mod download
+RUN go install
 
 RUN go build -o /bin/app
 
