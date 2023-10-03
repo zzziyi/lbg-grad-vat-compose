@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from './logo.svg';
+import SERVER_URL from './env';
 import './App.css';
 import ProductList from './products';
 import TotalPrice from './total';
@@ -50,7 +50,7 @@ function App() {
 
     console.log(JSON.stringify(json))
     
-    req.open('POST', 'http://localhost:8080/calc', true)
+    req.open('POST', 'http://' + SERVER_URL + ':8080/calc', true)
     req.setRequestHeader('Content-Type', 'application/json')
     req.send(JSON.stringify(json))
 
