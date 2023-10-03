@@ -15,6 +15,7 @@ COPY . .
 
 ENV SERVER_URL=localhost
 
+RUN chmod +x set_env.sh
 RUN ./set_env.sh
 
 # package up the react project in the /app directory
