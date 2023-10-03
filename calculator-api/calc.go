@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"log"
+	"errors"
+	"io"
 )
 
 type calc_req struct {
@@ -16,7 +18,7 @@ func calculator(w http.ResponseWriter, req *http.Request) {
 	var calc, result calc_req
 	err := decoder.Decode(&calc)
 
-    if err != nil {
+    if err != nil && !errors.Is(err, io.EOF) {
         panic(err)
     }
 
@@ -37,6 +39,8 @@ func calculator(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	encoder := json.NewEncoder(w)
 	encoder.Encode(&result)
 }
