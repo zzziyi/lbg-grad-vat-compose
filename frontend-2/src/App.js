@@ -50,7 +50,7 @@ function App() {
 
     console.log(JSON.stringify(json))
     
-    req.open('POST', 'http://' + SERVER_URL + ':8080/calc', true)
+    req.open('POST', 'http://' + SERVER_URL + '/calc', true)
     req.setRequestHeader('Content-Type', 'application/json')
     req.send(JSON.stringify(json))
 
