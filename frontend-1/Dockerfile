@@ -12,11 +12,12 @@ RUN npm install
 
 # copy everything from the react app folder to the /app folder in the container
 COPY . .
+COPY set_env.sh /app/
 
 ARG SERVER_URL=localhost
 
 RUN chmod +x set_env.sh
-RUN ./set_env.sh
+RUN set_env.sh
 
 # package up the react project in the /app directory
 RUN npm run build
